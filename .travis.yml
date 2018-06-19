@@ -16,12 +16,12 @@ script:
   - ./spec/add-version-links.sh
   - docker run -v $TRAVIS_BUILD_DIR/spec:/documents --name asciidoc-to-html rochdev/alpine-asciidoctor:mini asciidoctor -D /documents/output index.adoc seed.adoc
   - docker run -v $TRAVIS_BUILD_DIR/spec:/documents --name asciidoc-to-pdf rochdev/alpine-asciidoctor:mini asciidoctor-pdf -D /documents/output seed.adoc
-  - docker run -v $TRAVIS_BUILD_DIR/spec:/documents --name asciidoc-to-manpage rochdev/alpine-asciidoctor:mini asciidoctor-manpage -b manpage -D /documents/output seed.man.adoc
+  # - docker run -v $TRAVIS_BUILD_DIR/spec:/documents --name asciidoc-to-manpage rochdev/alpine-asciidoctor:mini asciidoctor-manpage -b manpage -D /documents/output seed.man.adoc
 
 after_failure:
   - docker logs asciidoc-to-html
   - docker logs asciidoc-to-pdf
-  - docker logs asciidoc-to-manpage
+  # - docker logs asciidoc-to-manpage
 
 before_deploy:
   - ./spec/collect-versioned-docs.sh
