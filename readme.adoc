@@ -41,3 +41,13 @@ gren changelog --override
 git commit -a -m "Update changelog for release"
 git push
 ```
+
+=== Local development
+
+Run and test this repo locally using this command from within the `spec` directory:
+
+```
+docker run -v `pwd`:/documents rochdev/alpine-asciidoctor:mini asciidoctor -a stylesheet=style.css -D /documents/output seed.adoc
+```
+
+The custom stylesheet implemented here uses Sass, so a sass processor such as the `sass` Ruby gem or `node-sass` should be used to process style changes.
